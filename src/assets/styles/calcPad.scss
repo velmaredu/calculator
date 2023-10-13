@@ -1,0 +1,21 @@
+@import "variables";
+
+.calc-pad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1px;
+  background-color: $primary-dark-background-color;
+
+  .btn {
+    border-radius: 0;
+    width: 100%;
+  }
+}
+
+.double-width {
+  grid-column: span 2;
+}
+
+.double-height {
+  grid-row: span 2;
+}
