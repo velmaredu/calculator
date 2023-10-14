@@ -1,5 +1,6 @@
 import { Button, Container } from "react-bootstrap";
 import CalcButton from "./CalcButton";
+import { useEffect } from "react";
 
 type CalcPadProps = {
     addInput: Function,
@@ -8,9 +9,38 @@ type CalcPadProps = {
 };
 
 function CalcPad(props: CalcPadProps) {
+
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            const key = event.key;
+            const button = document.querySelector(`button[data-key="${key}"]`);
+            if (button instanceof HTMLElement) {
+                button.style.cssText = "color: black; background-color: #ffd000;";
+                button.click();
+            }
+        };
+
+        const handleKeyUp = (event: KeyboardEvent) => {
+            const key = event.key;
+            const button = document.querySelector(`[data-key="${key}"]`);
+
+            if (button instanceof HTMLElement) {
+                button.style.cssText = "";
+            }
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+        document.addEventListener('keyup', handleKeyUp);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+            document.removeEventListener('keyup', handleKeyUp);
+        };
+    }, []);
+
     return (
         <Container fluid className="calc-pad">
-            <Button id="clear" className="double-width" variant="danger" onClick={() => props.clearInput()}>AC</Button>
+            <Button id="clear" className="double-width" variant="danger" onClick={() => props.clearInput()} data-key="Delete">AC</Button>
             <CalcButton id="divide" manageClick={props.addInput} value={"/"} />
             <CalcButton id="multiply" manageClick={props.addInput} value={"*"} />
             <CalcButton id="seven" manageClick={props.addInput} value={"7"} />
@@ -24,10 +54,10 @@ function CalcPad(props: CalcPadProps) {
             <CalcButton id="one" manageClick={props.addInput} value={"1"} />
             <CalcButton id="two" manageClick={props.addInput} value={"2"} />
             <CalcButton id="three" manageClick={props.addInput} value={"3"} />
-            <Button id="equals" className="double-height" onClick={() => props.getResult()}>=</Button>
+            <Button id="equals" className="double-height" onClick={() => props.getResult()} data-key="=">=</Button>
             <CalcButton id="zero" manageClick={props.addInput} value={"0"} />
             <CalcButton id="decimal" manageClick={props.addInput} value={"."} />
-        </Container>
+        </Container >
     );
 }
 

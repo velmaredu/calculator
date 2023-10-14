@@ -6,7 +6,7 @@ type DisplayProps = {
 
 function Display(props: DisplayProps) {
     return (
-        <Container fluid className="display rounded">
+        <Container fluid id="display" className="rounded">
             {props.input}
         </Container>
     );

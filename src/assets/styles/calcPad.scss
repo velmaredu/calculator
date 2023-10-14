@@ -4,11 +4,32 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1px;
-  background-color: $primary-dark-background-color;
+  flex-grow: 1;
+  padding: 1px;
+  background-color: $secondary-dark-background-color;
 
   .btn {
     border-radius: 0;
-    width: 100%;
+    border: none;
+    color: $primary-dark-text-color;
+
+    &.btn-primary:not(.operator) {
+      background-color: $primary-dark-background-color;
+    }
+
+    &.operator {
+      background-color: rgb(44, 44, 44);
+      color: $primary-dark-text-color;
+    }
+
+    &:focus {
+      box-shadow: none !important;
+    }
+
+    &:active {
+      color: black !important;
+      background-color: #ffd000 !important;
+    }
   }
 }
 
