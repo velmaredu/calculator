@@ -19,9 +19,9 @@
     "yarn": "^1.22.19"
   },
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "yarn run compile-scss && yarn run build",
     "deploy": "gh-pages -d build -b main",
-    "start": "npm run compile-scss && react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
