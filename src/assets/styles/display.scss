@@ -1,0 +1,12 @@
+#display {
+  display: flex;
+  background-color: silver;
+  height: 20%;
+  align-items: flex-end; /* Alinea el contenido hacia la parte inferior */
+  justify-content: flex-end;
+  font-family: "Calculator", sans-serif;
+  font-size: xx-large;
+  font-weight: bold;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
